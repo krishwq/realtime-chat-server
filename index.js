@@ -24,7 +24,8 @@ io.on('connection',socket=>{
         socket.broadcast.emit('participant', users);
     });
     
-    socket.on('send-audio', (audiourl) => {
-        socket.broadcast.emit('receive-audio', { name: users[socket.id], audio:audiourl });
+    socket.on('send-audio', (data) => {
+        // Broadcast the audio buffer to all clients
+        socket.broadcast.emit('receive-audio', data.buffer);
     });
 })
